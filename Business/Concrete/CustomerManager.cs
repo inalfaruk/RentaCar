@@ -8,7 +8,7 @@ namespace Business.Concrete
 {
     public class CustomerManager : ICustomerService
     {
-        public Customer Get(int Id)
+        public Customer Get(int id)
         {
             throw new NotImplementedException();
         }

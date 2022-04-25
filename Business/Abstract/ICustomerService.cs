@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,11 +8,11 @@ namespace Business.Abstract
 {
     interface ICustomerService
     {
-        List<Customer> GetAll();
+        IDataResult<List<Customer>> GetAll();
 
-        List<Customer> GetByUserId(int userId);
+        IDataResult<List<Customer>> GetByUserId(int userId);
 
-        Customer Get(int Id);
+        Customer Get(int id);
 
 
     }

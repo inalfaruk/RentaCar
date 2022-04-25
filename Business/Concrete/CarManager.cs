@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Entities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -19,34 +21,42 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            throw new NotImplementedException();
+            if (car.CarName.Length < 2)
+            {
+                return new ErrorResult(Messages.CarNameInvalid);
+
+            }
+            _carDal.Add(car);
+
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
-            throw new NotImplementedException();
+            _carDal.Delete(car);
+            return new Result();
         }
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll();
+            return new DataResult<List<Car>>(_carDal.GetAll(),true);
         }
 
-        public List<Car> GetAllByCategoryId(int categoryId)
+        public IDataResult<List<Car>> GetAllByCategoryId(int categoryId)
         {
-            return _carDal.GetAll(p => p.CategoryId == categoryId);
+            return new DataResult<List<Car>>(_carDal.GetAll(p => p.CategoryId == categoryId),true);
         }
 
-        public Car GetById(int Id)
+        public IDataResult<Car> GetById(int Id)
         {
-            return _carDal.Get(c => c.Id == Id);
+            return new DataResult<Car>(_carDal.Get(c => c.Id == Id),true);
         }
 
-        public List<Car> GetByDailyPrice(decimal min, decimal max)
+        public IDataResult<List<Car>> GetByDailyPrice(decimal min, decimal max)
         {
-            return _carDal.GetAll(p => p.DailyPrice <= min && p.DailyPrice <= max);
+            return new DataResult<List<Car>>(_carDal.GetAll(p => p.DailyPrice <= min && p.DailyPrice <= max),true);
         }
 
         public List<CarDetailDto> GetCarDetails()
@@ -56,17 +66,20 @@ namespace Business.Concrete
 
         public List<Car> GetCarsByBrandId(int brandId)
         {
-            return _carDal.Get(c => c.BrandId == brandId);
+            return new DataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId));
         }
 
         public List<Car> GetCarsByColorId(int colorId )
         {
-            return _carDal.Get(c => c.ColorId == colorId);
+            return _carDal.GetAll(c => c.ColorId == colorId);
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
-            throw new NotImplementedException();
+            _carDal.Update(car);
+
+            return new Result();
+
         }
     }
 }

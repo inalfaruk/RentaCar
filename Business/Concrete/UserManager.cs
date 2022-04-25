@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,13 @@ namespace Business.Concrete
 {
     public class UserManager : IUserService
     {
-        UserDal
+        IUserDal _userDal;
+
+        public UserManager(IUserDal userDal)
+        {
+            _userDal = userDal;
+        }
+
         public void Add(User user)
         {
             throw new NotImplementedException();
@@ -19,9 +26,9 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
-        public User GetById(int Id)
+        public User GetById(int id)
         {
-            return 
+            return _userDal.Get(u=>u.Id==id);
         }
 
         public void Update(User user)

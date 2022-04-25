@@ -59,10 +59,7 @@ namespace Core.DataAccess.EntityFramework
             }
         }
 
-        List<TEntity> IEntityRepository<TEntity>.Get(Expression<Func<TEntity, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
+       
 
     }
 }
