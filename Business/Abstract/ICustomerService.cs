@@ -10,9 +10,9 @@ namespace Business.Abstract
     {
         IDataResult<List<Customer>> GetAll();
 
-        IDataResult<List<Customer>> GetByUserId(int userId);
+        IDataResult<Customer> GetByUserId(int userId);
 
-        Customer Get(int id);
+       IDataResult<Customer> GetById(int Id);
 
 
     }
