@@ -45,10 +45,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
-        public IDataResult<List<Car>> GetAllByCategoryId(int categoryId)
-        {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.CategoryId == categoryId));
-        }
+        //public IDataResult<List<Car>> GetAllByCategoryId(int categoryId)
+        //{
+        //    return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.CategoryId == categoryId));
+        //}
 
         public IDataResult<Car> GetById(int Id)
         {

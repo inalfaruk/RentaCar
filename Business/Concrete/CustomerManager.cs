@@ -31,5 +31,23 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == userId));            
         }
+
+        public IResult Add(Customer customer)
+        {
+            _customerDal.Add(customer);
+            return new SuccessDataResult<List<Customer>>();
+        }
+
+        public IResult Update(Customer customer)
+        {
+            _customerDal.Update(customer);
+            return new SuccessDataResult<List<Customer>>();
+        }
+
+        public IResult Delete(Customer customer)
+        {
+            _customerDal.Delete(customer);
+            return new SuccessDataResult<List<Customer>>();
+        }
     }
 }
