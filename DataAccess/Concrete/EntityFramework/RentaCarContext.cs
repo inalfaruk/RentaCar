@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.Concrete.EntityFramework
+namespace DataAccess.Concrete.EntityFramework
 {
-    public class RentaCarContext: DbContext
+    public class RentaCarContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

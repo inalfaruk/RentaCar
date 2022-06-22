@@ -9,8 +9,10 @@ namespace Business.Constants
     {
         public static string CarAdded = "Araç Eklendi";
         public static string CarNameInvalid = "Araç ismi geçersizdir";
-        internal static string CarDeleted="Araç Silindi";
-        internal static string CarUpdated="Güncellendi";
-       
+        public static string CarDeleted="Araç Silindi";
+        public static string CarUpdated="Güncellendi";
+        public static string CarCountOfColorError="Aynı renkte daha fazla araç olamaz.";
+        public static string CarNameAlreadyExists ="Aynı İsimde araç eklenmiş";
+        internal static string ColorLimitExceded = "renk sayısı fazla";
     }
 }
