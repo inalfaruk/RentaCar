@@ -13,6 +13,9 @@ namespace Business.Constants
         public static string CarUpdated="Güncellendi";
         public static string CarCountOfColorError="Aynı renkte daha fazla araç olamaz.";
         public static string CarNameAlreadyExists ="Aynı İsimde araç eklenmiş";
-        internal static string ColorLimitExceded = "renk sayısı fazla";
+        public static string ColorLimitExceded = "renk sayısı fazla";
+
+        public static string CarCountOfImageError = "En fazla 5 adet resim eklenebilir.";
+
     }
 }

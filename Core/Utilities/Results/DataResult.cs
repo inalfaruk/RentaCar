@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,7 +10,7 @@ namespace Core.Utilities.Results
 
         public DataResult(T data, bool success, string message):base(success,message)
         {
-
+           
         }
 
         public DataResult(T data,bool success):base(success)

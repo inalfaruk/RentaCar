@@ -3,7 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
 using Business.DependencyResolvers.Autofac;
-using Core.Concrete.EntityFramework;
+
 using DataAccess.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);

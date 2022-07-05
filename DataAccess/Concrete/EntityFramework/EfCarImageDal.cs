@@ -7,7 +7,8 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-   public class EfCategoryDal : EfEntityRepositoryBase<Category,RentaCarContext>,ICategoryDal
+    public class EfCarImageDal : EfEntityRepositoryBase<CarImage,RentaCarContext>,ICarImageDal
     {
+
     }
 }

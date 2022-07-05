@@ -22,10 +22,12 @@ namespace Business.Concrete
 
         ICarDal _carDal;
         IColorService _colorService;
+        ICarImageService _carImageService;
         public CarManager(ICarDal carDal, IColorService colorService)
         {
             _carDal = carDal;
             _colorService = colorService;
+            
         }
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
