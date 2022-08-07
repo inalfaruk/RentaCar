@@ -2,6 +2,9 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Cashing;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Entities;
@@ -33,6 +36,8 @@ namespace Business.Concrete
 
         [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))]
+        [CacheRemoveAspect("ICarService.Get")]
+        [TransactionScopeAspect]
         public IResult Add(Car car)
         {
             //  ValidationTool.Validate(new CarValidator(), car);
@@ -60,7 +65,8 @@ namespace Business.Concrete
             _carDal.Delete(car);
             return new SuccessDataResult<List<Car>>(Messages.CarDeleted); ;
         }
-
+        [CacheAspect]
+        [PerformanceAspect(1)]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll());
@@ -70,7 +76,7 @@ namespace Business.Concrete
         //{
         //    return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.CategoryId == categoryId));
         //}
-
+        [CacheAspect]
         public IDataResult<Car> GetById(int Id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == Id));
@@ -96,6 +102,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
 
@@ -171,6 +178,10 @@ namespace Business.Concrete
             return new SuccessResult();
 
         }
-            
-            }
+
+        public IResult AddTransactionalTest(Car car)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
