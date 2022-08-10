@@ -45,7 +45,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 builder.Services.AddDependencyResolvers(new ICoreModule[] { new CoreModule() });
-
+builder.Services.AddCors();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
     .ConfigureContainer<ContainerBuilder>(builder =>
      {
@@ -62,7 +62,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseCors(builder=>builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

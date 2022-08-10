@@ -33,14 +33,19 @@ namespace Core.Aspects.Autofac.Performance
             {
              //   Debug.WriteLine($"Performance : {invocation.Method.DeclaringType.FullName}.{invocation.Method.Name}-->{_stopwatch.Elapsed.TotalSeconds}");
                 string path= AppDomain.CurrentDomain.BaseDirectory + "performancelogfile.txt";
-                if (File.Exists(path))
+                if (!File.Exists(path))
                 {
                     Directory.CreateDirectory(path);
 
                     
                 }
-                File.WriteAllText(path, $"Performance : {invocation.Method.DeclaringType.FullName}.{invocation.Method.Name}-->{_stopwatch.Elapsed.TotalSeconds}");
-            
+                using (StreamWriter streamWriter = File.AppendText(path))
+                {
+                    streamWriter.WriteLine($"Performance : {invocation.Method.DeclaringType.FullName}.{invocation.Method.Name}-->{_stopwatch.Elapsed.TotalSeconds}");
+                }
+                ;
+               
+              
             }
             _stopwatch.Reset();
         }

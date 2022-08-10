@@ -11,7 +11,7 @@ namespace WebAPI.Controllers
     {
         ICarService _carService;
 
-        public CarsController(ICarService carService)
+        public CarsController(ICarService carService)   
         {
             _carService = carService;
         }
@@ -20,7 +20,20 @@ namespace WebAPI.Controllers
        [HttpGet("getall")]
         public IActionResult GetAll()
         {
+            Thread.Sleep(2000);
             var result = _carService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpGet("getcardetails")]
+        public IActionResult GetCarDetails()
+        {
+            Thread.Sleep(2000);
+            var result = _carService.GetCarDetails();
             if (result.Success)
             {
                 return Ok(result);
